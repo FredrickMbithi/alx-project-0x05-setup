@@ -1,7 +1,7 @@
 import { ImageProps } from "@/interfaces";
 import { useState } from "react";
 
-const useFetchData = <T, R extends { prompt: string }>() => {
+const useFetchData = <T, R extends { prompt?: string }>() => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -24,8 +24,12 @@ const useFetchData = <T, R extends { prompt: string }>() => {
       }
 
       const result = await resp.json()
-      setResponseData(result as T)
-      setGeneratedImages((prev) => [...prev, { imageUrl: (result as any)?.message, prompt: body?.prompt }])
+      setResponseData(result)
+      
+      // Track generated image
+      if (body.prompt) {
+        setGeneratedImages((prev) => [...prev, { imageUrl: result?.message, prompt: body.prompt as string }])
+      }
     } catch (err) {
       setError((err as Error).message)
     } finally {
