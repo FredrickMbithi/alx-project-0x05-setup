@@ -1,5 +1,6 @@
 import ImageCard from "@/components/common/ImageCard";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const Home: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -30,15 +31,15 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-indigo-500/30">
       <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12">
-          <div className="text-2xl font-bold tracking-tight cursor-pointer">
+          <Link href="/" className="text-2xl font-bold tracking-tight cursor-pointer">
             <span className="text-white">Image</span>
             <span className="text-indigo-500">Gen</span>
-          </div>
+          </Link>
           <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-            <a className="hover:text-white transition-colors duration-200" href="#">Home</a>
-            <a className="hover:text-white transition-colors duration-200" href="#">Gallery</a>
-            <a className="hover:text-white transition-colors duration-200" href="#">About</a>
-            <a className="hover:text-white transition-colors duration-200" href="#">Contact</a>
+            <Link className="hover:text-white transition-colors duration-200 text-white" href="/">Home</Link>
+            <Link className="hover:text-white transition-colors duration-200" href="/gallery">Gallery</Link>
+            <Link className="hover:text-white transition-colors duration-200" href="/about">About</Link>
+            <Link className="hover:text-white transition-colors duration-200" href="/contact">Contact</Link>
           </nav>
         </div>
       </header>
