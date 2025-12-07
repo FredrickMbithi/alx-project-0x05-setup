@@ -27,68 +27,71 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white">
-      <header className="flex items-center justify-between px-6 py-4">
-        <div className="text-xl font-semibold tracking-wide">
-          <span className="text-indigo-400">Image</span>
-          <span className="text-white">Gen</span>
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-indigo-500/30">
+      <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12">
+          <div className="text-2xl font-bold tracking-tight cursor-pointer">
+            <span className="text-white">Image</span>
+            <span className="text-indigo-500">Gen</span>
+          </div>
+          <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+            <a className="hover:text-white transition-colors duration-200" href="#">Home</a>
+            <a className="hover:text-white transition-colors duration-200" href="#">Gallery</a>
+            <a className="hover:text-white transition-colors duration-200" href="#">About</a>
+            <a className="hover:text-white transition-colors duration-200" href="#">Contact</a>
+          </nav>
         </div>
-        <nav className="hidden sm:flex gap-6 text-sm text-gray-300">
-          <a className="hover:text-white" href="#">Home</a>
-          <a className="hover:text-white" href="#">Gallery</a>
-          <a className="hover:text-white" href="#">About</a>
-        </nav>
       </header>
 
-      <main className="flex flex-col items-center px-4 pt-10 pb-20">
-        <div className="flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-gray-700 text-xs text-gray-300">
-          <span className="inline-block h-2 w-2 rounded-full bg-indigo-400" />
-          Powered by AI
+      <main className="flex-1 flex flex-col items-center justify-center px-4 pb-20 pt-10">
+        <div className="mb-10">
+          <div className="mx-auto w-fit flex items-center gap-2 px-4 py-2 rounded-full border border-gray-800 bg-[#121212] text-xs font-medium text-gray-400 shadow-sm">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-indigo-500" />
+            Powered by AI
+          </div>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-center leading-tight mb-3">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-blue-400">Image Generation</span>
-          <br />
-          <span className="text-white">App</span>
-        </h1>
-        <p className="text-center text-gray-300 max-w-2xl mb-8">
-          Generate stunning images based on your prompts using cutting-edge AI technology.
-        </p>
+        <div className="text-center mb-12 max-w-3xl">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+            <span className="block text-white">Image Generation</span>
+            <span className="block text-indigo-500">App</span>
+          </h1>
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
+            Generate stunning images based on your prompts using cutting-edge AI technology.
+          </p>
+        </div>
 
-        <div className="w-full max-w-xl bg-gray-800/60 border border-gray-700 rounded-2xl p-4">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="w-full max-w-2xl">
+          <div className="relative flex items-center w-full p-2 bg-[#18181b] border border-gray-800 rounded-xl shadow-2xl ring-1 ring-white/5">
             <input
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Describe your image... e.g., 'A futuristic city at sunset'"
-              className="flex-1 bg-gray-900 text-gray-100 placeholder-gray-500 p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 bg-transparent text-white placeholder-gray-500 px-4 py-3 text-base focus:outline-none"
             />
             <button
               onClick={handleGenerateImage}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow hover:from-indigo-600 hover:to-purple-600 transition-colors"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-lg shadow-indigo-500/20"
             >
-              {isLoading ? "Loading..." : "Generate Image"}
+              {isLoading ? "Generating..." : "Generate"}
             </button>
           </div>
-          <button
-            onClick={handleGenerateImage}
-            className="sm:hidden w-full px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow hover:from-indigo-600 hover:to-purple-600 transition-colors"
-          >
-            {isLoading ? "Loading..." : "Generate Image"}
-          </button>
         </div>
 
-        <div className="mt-10 w-full max-w-2xl">
+        <div className="mt-16 w-full max-w-3xl flex justify-center">
           {imageUrl ? (
-            <ImageCard
-              action={() => setImageUrl(imageUrl)}
-              imageUrl={imageUrl}
-              prompt={prompt}
-            />
+            <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-800">
+              <ImageCard
+                action={() => setImageUrl(imageUrl)}
+                imageUrl={imageUrl}
+                prompt={prompt}
+              />
+            </div>
           ) : (
-            <div className="mx-auto h-16 w-16 rounded-full border border-gray-700 flex items-center justify-center text-gray-500">
-              <span className="text-2xl">🖼️</span>
+            <div className="h-64 w-full max-w-md border border-dashed border-gray-800 rounded-xl flex flex-col items-center justify-center text-gray-600 bg-[#0a0a0a]">
+              <span className="text-4xl mb-4 opacity-50">🎨</span>
+              <p className="text-sm">Your generated image will appear here</p>
             </div>
           )}
         </div>
