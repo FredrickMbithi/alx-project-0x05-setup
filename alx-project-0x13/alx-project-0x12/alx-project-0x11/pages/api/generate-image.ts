@@ -7,7 +7,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   const gptUrl = "https://chatgpt-42.p.rapidapi.com/texttoimage";
 
   if (!gptApiKey || !gptUrl) {
-    return response.status(500).json({ error: "API key or URL is missing" });
+    return response.status(500).json({ error: "API key or URL is missing in environment variables" });
   }
 
   try {
@@ -27,7 +27,9 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       },
     });
 
-    if (!res.ok) throw new Error("Failed to fetch from DALLE");
+    if (!res.ok) {
+      throw new Error("Failed to fetch from DALLE");
+    }
 
     const data = await res.json();
 
@@ -35,8 +37,9 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       message: data?.generated_image || "https://via.placeholder.com/600x400?text=Generated+Image",
     });
   } catch (error) {
+    console.error("Error in API route:", error);
     return response.status(500).json({ error: "Internal server error" });
   }
 }
 
-export default handler;
+export default handler
