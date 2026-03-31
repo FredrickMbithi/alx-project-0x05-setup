@@ -2,7 +2,7 @@
 
 Collection of advanced ALX frontend projects covering Next.js, TypeScript, testing, and production deployment.
 
-## 📚 Projects Included
+## Projects Included
 
 ### alx-project-0x07
 - **Focus:** Next.js fundamentals
@@ -24,7 +24,7 @@ Collection of advanced ALX frontend projects covering Next.js, TypeScript, testi
 - **Focus:** Production deployment
 - **Topics:** Build optimization, CI/CD, hosting
 
-## 🎯 Learning Objectives
+## Learning Objectives
 
 - Build production-ready Next.js applications
 - Implement type-safe React with TypeScript
@@ -32,7 +32,7 @@ Collection of advanced ALX frontend projects covering Next.js, TypeScript, testi
 - Manage complex application state
 - Deploy to production (Vercel/Netlify)
 
-## 🚀 Getting Started
+## Getting Started
 
 Each project has its own setup:
 
@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework:** Next.js 13+
 - **Language:** TypeScript
@@ -50,7 +50,7 @@ npm run dev
 - **State:** Redux Toolkit or Zustand
 - **Deployment:** Vercel, Netlify, or custom
 
-## 📖 Skills Demonstrated
+## Skills Demonstrated
 
 - Server-side rendering (SSR)
 - Static site generation (SSG)
